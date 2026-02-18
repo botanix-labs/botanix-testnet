@@ -1,37 +1,42 @@
-version: '3.7'
+version: '3.8'
 
 services:
   reth-rpc-node:
     env_file:
       - .bitcoin.env
     container_name: reth-rpc-node
-    image: ghcr.io/botanix-labs/botanix-reth-node:latest
+    image: ghcr.io/botanix-labs/botanix-reth:1.5.5-rc.6
     command:
-      - poa
-      - --federation-config-path=/reth/botanix_testnet/config/chain.toml
-      - --datadir=/reth/botanix_testnet/data
+      - node
+      - --federation-config-path=/reth/botanix_testnet/chain.toml
+      - --datadir=/reth/botanix_testnet
+      - --chain=botanix-testnet
       - --http
       - --http.addr=0.0.0.0
       - --http.port=8545
-      - --http.api=debug,eth,net,trace,txpool,web3,rpc
+      - --http.api=admin,debug,eth,net,trace,txpool,web3,rpc
       - --http.corsdomain=*
-      - --ws
-      - --ws.port=8546
       - -vvv
-      - --bitcoind.url=${BITCOIND_HOST}
-      - --bitcoind.username=${BITCOIND_USER}
-      - --bitcoind.password=${BITCOIND_PASS}
-      - --btc-network=signet
-      - --p2p-secret-key=/reth/botanix_testnet/config/discovery-secret
+      - --bitcoind.primary_url=$(BITCOIND_HOST)
+      - --bitcoind.primary_username=$(BITCOIND_USER)
+      - --bitcoind.primary_password=$(BITCOIND_PASS)
+      - --p2p-secret-key=/reth/botanix_testnet/discovery-secret
       - --port=30303
+      - --btc-network=signet
       - --metrics=0.0.0.0:9001
+      - --ipcdisable
       - --abci-port=26658
       - --abci-host=0.0.0.0
       - --cometbft-rpc-port=26657
       - --cometbft-rpc-host=cometbft-consensus-node
-      - --sync.enable_state_sync
-      - --sync.enable_historical_sync
       - --is-testnet
+      - --ws
+      - --ws.addr=0.0.0.0
+      - --ws.port=8546
+      - --ws.api=debug,eth,net,trace,txpool,web3,rpc
+      - --bitcoind.zmq.hash-block-address=tcp://mutiny-bitcoind:28334
+      - --trusted-peers=enode://9f7a21033f59c81c43d4068fb7173d39bc8898a237773ba80af0ce5a889e5a0f0ff3163b7b7ee9d36bb6b49ff8f1730c9051a1321d2369ca73cec27b10a42a80@34.23.68.172:30303,enode://3483ed1b23945282c6f7b6fecd01aab185ecaff5e9713fb93b643059b6f80715b47ec49e12b8d23b593854c84f81313481f9eb7333e5f2a669c8a736214e7ad0@34.138.75.121:30303,enode://411001648eaafa26f4490bc3a5971738a1f5dc4b4bf91dc4d8b43ad45fe06538bf7a2e220b507f691c2302be310fe04ead3d3536ed3baf6f59703402a34cefa8@34.73.161.58:30303,enode://404523f1c644ee05e83f84c3301ed1e4797d02e17475a20b3b52ad017f10685e345ceca515b573ff2f0ebf340e9e1989b1f317a65f43b60c354f8323d9a43790@34.138.93.88:30303,enode://5f647171fbeec994a2b78ce6bda4ae673126128aea0d5d933fa1c506d15c86605f68bf3026b4126867a432c15c0409767bdf31fb2d745a2cfec734b108c3fd86@34.138.217.228:30303,enode://d4a574e18fabb60fe4e32c4a52de7a504229313452f21a40c00b66bc3c08c2539e8cab43a274cb651125212b94d53e4113795d9585dc839a1a30f45cc935b889@34.139.235.130:30303
+
     ports:
       - 8545:8545
       - 8546:8546

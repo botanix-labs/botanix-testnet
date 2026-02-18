@@ -1,63 +1,89 @@
 {
-    "genesis_time": "2024-09-13T14:45:36.286745394Z",
-    "chain_id": "3636",
-    "initial_height": "0",
-    "consensus_params": {
-      "block": {
-        "max_bytes": "4194304",
-        "max_gas": "-1"
-      },
-      "evidence": {
-        "max_age_num_blocks": "100000",
-        "max_age_duration": "172800000000000",
-        "max_bytes": "1048576"
-      },
-      "validator": {
-        "pub_key_types": [
-          "secp256k1"
-        ]
-      },
-      "version": {
-        "app": "0"
-      },
-      "synchrony": {
-        "precision": "500000000",
-        "message_delay": "2000000000"
-      },
-      "feature": {
-        "vote_extensions_enable_height": "0",
-        "pbts_enable_height": "1"
+  "app_hash": "",
+  "chain_id": "3636",
+  "consensus_params": {
+    "block": {
+      "max_bytes": "4194304",
+      "max_gas": "-1"
+    },
+    "evidence": {
+      "max_age_duration": "172800000000000",
+      "max_age_num_blocks": "100000",
+      "max_bytes": "1048576"
+    },
+    "feature": {
+      "pbts_enable_height": "1",
+      "vote_extensions_enable_height": "0"
+    },
+    "synchrony": {
+      "message_delay": "15000000000",
+      "precision": "505000000"
+    },
+    "validator": {
+      "pub_key_types": [
+        "secp256k1"
+      ]
+    },
+    "version": {
+      "app": "0"
+    }
+  },
+  "genesis_time": "2025-10-24T11:02:28.773465Z",
+  "initial_height": "0",
+  "validators": [
+    {
+      "address": "431B0EDEAD4A1536DC1E67EEF18B905D6C157783",
+      "name": "barcelona",
+      "power": "10",
+      "pub_key": {
+        "type": "tendermint/PubKeySecp256k1",
+        "value": "A9f5WdmWUzlz5ICHkE6jdBfubKR6un1hBndHU0SmHy4t"
       }
     },
-    "validators": [
-      {
-        "address": "85FF04D7785BEEAAD6E508828B5C9A22262FD98E",
-        "pub_key": {
-          "type": "tendermint/PubKeySecp256k1",
-          "value": "A6y9PbcGR/PmWF/QS2cwo05trYtT9rgGi9Fhj4htfA29"
-        },
-        "power": "10",
-        "name": "testnet-node-europe-west1-001-cometbft-node"
-      },
-      {
-        "address": "886CE36C8EB6762A4B3C8EFBE91FB92FC65A85EC",
-        "pub_key": {
-          "type": "tendermint/PubKeySecp256k1",
-          "value": "Aw7Q3lOWaSd7+9RGaDzYPLUg3Q0ZlgBCOkIuaUaDa4Mp"
-        },
-        "power": "10",
-        "name": "testnet-node-africa-south1-001-cometbft-node"
-      },
-      
-      {
-        "address": "8B4621FFE83A4A18FB4358BD77B39499CDAEEB13",
-        "pub_key": {
-          "type": "tendermint/PubKeySecp256k1",
-          "value": "A+f5DDtuVj4r0TrGIO7BxL7zUPT9OrMHhpwPCGrM4ChN"      
-        },
-        "power": "10",
-        "name": "testnet-node-asia-east1-001-cometbft-node-3"
+    {
+      "address": "A80880BEB8CFE42076746C1FF332AFF42D4E6619",
+      "name": "chelsea",
+      "power": "10",
+      "pub_key": {
+        "type": "tendermint/PubKeySecp256k1",
+        "value": "ApMHMewOKUGDtD/ehdNROI2IdU1GsUB5YTLfqHtkvqx7"
       }
-  ],
-  "app_hash": ""
+    },
+    {
+      "address": "D5E5764117514D8F78127355FF136B2ACD3639D2",
+      "name": "liverpool",
+      "power": "10",
+      "pub_key": {
+        "type": "tendermint/PubKeySecp256k1",
+        "value": "AuiVpSvqqLr1NvtPy/sbMS1ETwU5Izyh4aqwuGwsl4x+"
+      }
+    },
+    {
+      "address": "CA912BE60DE8EF31EAC49513A12BE766B815D195",
+      "name": "madrid",
+      "power": "10",
+      "pub_key": {
+        "type": "tendermint/PubKeySecp256k1",
+        "value": "A6Hx/kInAA9E8GULhkxLXKTO8xMtq/rvTNZL2lKk2G8N"
+      }
+    },
+    {
+      "address": "2EE22AD6654A0AB1C661197E8514FFC902768B90",
+      "name": "arsenal",
+      "power": "10",
+      "pub_key": {
+        "type": "tendermint/PubKeySecp256k1",
+        "value": "AzHG+weDryj/Xr3yX8OPH4dNZw8e5sOx/UhKDrdNmYzD"
+      }
+    },
+    {
+      "address": "03102A880DF051FCC0B3F7381E87D123DEE3757A",
+      "name": "manchester",
+      "power": "10",
+      "pub_key": {
+        "type": "tendermint/PubKeySecp256k1",
+        "value": "An5PfS9Fwh9YjdULSEkWtcPGnwJ+FxHFWTz2iw3YeS+r"
+      }
+    }
+  ]
 }
