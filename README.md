@@ -56,8 +56,8 @@ xcode-select --install
 
 ```sh
 # Clone the repository
-git clone https://github.com/botanix-labs/botanix-testnet-v1-internal.git
-cd botanix-testnet-v1-internal
+git clone https://github.com/botanix-labs/botanix-testnet.git
+cd botanix-testnet
 
 # Start Mutinynet
 make start-mutinynet
@@ -99,8 +99,8 @@ CAAS provides compressed snapshots of the Reth and CometBFT databases for quick 
 1. Download the snapshots:
 
 ```sh
-curl -L https://storage.googleapis.com/compressed-always-available-snapshot/consensus-node/consensus-node-snapshot-May-28-2025-0729AM-EST.tar.lz4 -o consensus.tar.lz4
-curl -L https://storage.googleapis.com/compressed-always-available-snapshot/poa-node/poa-rpc-snapshot-May-28-2025-0729AM-EST.tar.lz4 -o poa.tar.lz4
+curl -L https://storage.googleapis.com/botanix-rpc-testnet-snapshot/cometbft/cometbft-snapshot-Feb-16-2026-0125PM-EST.tar.lz4 -o consensus.tar.lz4
+curl -L https://storage.googleapis.com/botanix-rpc-testnet-snapshot/reth/reth-snapshot-Feb-16-2026-0125PM-EST.tar.lz4 -o poa.tar.lz4
 ```
 
 2. Decompress and unpack the files:
@@ -112,10 +112,6 @@ lz4 -dc poa.tar.lz4       | tar -x --strip-components=3
 
 3. Copy files to the appropriate directories:
 
-```sh
-cp -R home/ubuntu/testnet_v1/poa-rpc/db/ home/ubuntu/testnet_v1/poa-rpc/static_files/ ./data/reth
-cp -R home/ubuntu/testnet_v1/consensus-node/data/ ./data/cometbft
-```
 
 4. Delete cometbft wal:
 ```sh

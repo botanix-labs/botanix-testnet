@@ -267,9 +267,6 @@ external_address = ""
 # Comma separated list of seed nodes to connect to
 seeds = ""
 
-# Comma separated list of nodes to keep persistent connections to
-persistent_peers = "2561602572b54dbdcf44b02157ab62717c09d895@34.35.52.165:26656, dbd6bec8f89ec52232280d92f5b67069c5344095@35.201.136.224:26656, 45aabbb31b04257a86172e7002d25b2e923b896c@34.79.189.111:26656"
-
 # Path to address book
 addr_book_file = "config/addrbook.json"
 
@@ -452,23 +449,14 @@ version = "v0"
 
 wal_file = "data/cs.wal/wal"
 
-# How long we wait for a proposal block before prevoting nil
-timeout_propose = "3s"
-# How much timeout_propose increases with each round
-timeout_propose_delta = "500ms"
-# How long we wait after receiving +2/3 prevotes for “anything” (ie. not a single block or nil)
-timeout_prevote = "1s"
-# How much the timeout_prevote increases with each round
-timeout_prevote_delta = "500ms"
-# How long we wait after receiving +2/3 precommits for “anything” (ie. not a single block or nil)
-timeout_precommit = "1s"
-# How much the timeout_precommit increases with each round
-timeout_precommit_delta = "500ms"
-# How long we wait after committing a block, before starting on the new
-# height (this gives us a chance to receive some more precommits, even
-# though we already have +2/3).
-# Set to 0 if you want to make progress as soon as the node has all the precommits.
-timeout_commit = "5s"
+skip_timeout_commit=false
+timeout_propose = "1s"           # default: 3s
+timeout_propose_delta = "100ms"  # default: 500ms
+timeout_prevote = "500ms"        # default: 1s  
+timeout_prevote_delta = "100ms"  # default: 500ms
+timeout_precommit = "500ms"      # default: 1s
+timeout_precommit_delta = "100ms" # default: 500ms
+timeout_commit = "1s"            # default: 1s (this is the key one for block time)
 
 # Deprecated: set `timeout_commit` to 0 instead.
 skip_timeout_commit = false
