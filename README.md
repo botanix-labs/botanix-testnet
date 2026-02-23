@@ -243,18 +243,21 @@ CAAS provides compressed snapshots of the Reth and CometBFT databases for quick 
 1. Download the snapshots:
 
 ```sh
-curl -L https://storage.googleapis.com/botanix-rpc-testnet-snapshot/cometbft/cometbft-snapshot-Feb-16-2026-0125PM-EST.tar.lz4 -o consensus.tar.lz4
-curl -L https://storage.googleapis.com/botanix-rpc-testnet-snapshot/reth/reth-snapshot-Feb-16-2026-0125PM-EST.tar.lz4 -o poa.tar.lz4
+curl -L https://storage.googleapis.com/botanix-rpc-testnet-snapshot/cometbft/cometbft-snapshot-Feb-23-2026-0624AM-EST.tar.lz4 -o consensus.tar.lz4
+curl -L https://storage.googleapis.com/botanix-rpc-testnet-snapshot/reth/reth-snapshot-Feb-23-2026-0624AM-EST.tar.lz4 -o poa.tar.lz4
 ```
 
 2. Decompress and unpack the files:
 
 ```sh
-lz4 -dc consensus.tar.lz4 | tar -x --strip-components=3
-lz4 -dc poa.tar.lz4       | tar -x --strip-components=3
+# Reth snapshot extracts flat (db/, static_files/ at root)
+lz4 -dc poa.tar.lz4 | tar -x
+
+# CometBFT snapshot extracts from home/ubuntu/testnet/data/consensus-node/ (5 levels deep)
+lz4 -dc consensus.tar.lz4 | tar -x --strip-components=5
 ```
 
-3. Copy files to the appropriate directories:
+3. Copy data to the appropriate directories:
 
 
 4. Delete cometbft wal:
@@ -262,7 +265,16 @@ lz4 -dc poa.tar.lz4       | tar -x --strip-components=3
 sudo rm -rf ./data/cometbft/cs.wal  # adjust if your paths are different
 ```
 
-5. Start the testnet with the snapshot data in place:
+5. Reset `priv_validator_state.json` to:
+```bash
+{
+  "height": "0",
+  "round": 0,
+  "step": 0
+}
+```
+
+6. Start the testnet with the snapshot data in place:
 
 ```sh
 make start-testnet
